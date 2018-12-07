@@ -48,6 +48,7 @@ function runLiri() {
     }
 }
 
+//concertThis function using Bands in Town
 function concertThis(userinput) {
 //query url for bands in town
 var queryurl = "https://rest.bandsintown.com/artists/" + userinput + "/events?app_id=codingbootcamp";
@@ -64,7 +65,7 @@ request(queryurl, function (error, response, body) {
             //log venue location information
             console.log("Venue Location: " + data[i].venue.city + ", " + data[i].venue.country);
             //log concert date and time in MM/DD/YYYY
-            var date = data[i].datetime
+            var date = data[i].datetime;
             date = moment(date).format("MM/DD/YYYY")
             console.log("Concert Date and Time: " + date);
             //error handler 
@@ -76,3 +77,23 @@ request(queryurl, function (error, response, body) {
 });
 }
 runLiri();
+
+//SpotifyThis function calling Spotify API and using Spotify keys
+function spotifyThis(userinput) {
+
+    //spotify search query from node documentation
+    spotify.search({
+        type: 'track',
+        query: userinput
+    }, function(err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        //data drilled down to a managable level to see the songs and artists
+        data = data.tracks.items[0];
+        console.log("Song title: " + data.name);
+        console.log("Artist: " + data.artists[0].name);
+        console.log("Album: " + data.album.name);
+        console.log("Preview link: " + data.preview_url);
+    });
+}
