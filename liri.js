@@ -17,7 +17,7 @@ var nodeArgs = process.argv;
 var command = process.argv[2];
 
 //variable for user inputs that come after the command
-var userinput = process.argv[3];
+var userinput = process.argv.slice(3).join("+");
 
 //variable for file system
 var fs = require("file-system");
@@ -29,32 +29,30 @@ var request = require("request");
 var moment = require("moment");
 moment().format();
 
-//Get user input for song/artist/movie name
-//Loop starting at process.argv[3] because [2] is the command
-// for (var i = 3; i < nodeArgs.length; i++) {
-//     //If userInput is more than 1 word
-//     if (i > 3 && i < nodeArgs.length) {
-//         userinput = userinput + "%20" + nodeArgs[i];
-//     }
-//     //If userInput is only 1 word
-//     else {
-//         userinput += nodeArgs[i];
-//     }
-//  }
-
 //make overall liri function using switch commands 
 function runLiri() {
     switch (command) {
         //concert-this funtion first 
         case "concert-this":
+        concertThis(userinput);
+        break;
+        case "spotify-this-song":
+        spotifyThis(userinput);
+        break;
+        case "movie-this":
+        movieThis(userinput);
+        break;
+        case "do-what-it-says":
+        dowhatitsays();
+        break;
     }
 }
 
+function concertThis(userinput) {
 //query url for bands in town
 var queryurl = "https://rest.bandsintown.com/artists/" + userinput + "/events?app_id=codingbootcamp";
 //check to make sure query url looks correct
 console.log(queryurl)
-
 //call bands in town API 
 request(queryurl, function (error, response, body) {
     //log bands in town response data if status is 200 ok
@@ -76,3 +74,5 @@ request(queryurl, function (error, response, body) {
         }
     }
 });
+}
+runLiri();
