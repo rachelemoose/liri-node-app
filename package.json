@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/rachelemoose/liri-node-app/issues"
   },
-  "homepage": "https://github.com/rachelemoose/liri-node-app#readme"
+  "homepage": "https://github.com/rachelemoose/liri-node-app#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "file-system": "^2.2.2",
+    "fs-filesystem": "^2.1.2"
+  }
 }
