@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/rachelemoose/liri-node-app#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.2.0",
     "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
     "fs-filesystem": "^2.1.2"
   }
 }
